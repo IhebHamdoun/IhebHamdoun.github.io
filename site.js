@@ -1,5 +1,11 @@
 console.log("site.js is linked correctly.");
 
+// send a secret message, Zelda-style
+localStorage.setItem(
+  "It's a secret to everybody.",
+  'A wise man once bombed a cave wall for less. Hope your grading goes well!'
+)
+
 // grab the welcome div
 const welcomeDiv = document.querySelector('#welcome')
 
