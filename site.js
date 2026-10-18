@@ -74,3 +74,34 @@ setInterval(() => {
     currentImage++
     showImages()
 }, 5000)
+
+// display the to-do list (read-only) on the homepage
+const renderTodos = () => {
+    const todoList = document.querySelector('.todo-list')
+    const todos = JSON.parse(localStorage.getItem('todo-list')) || []
+
+    todoList.innerHTML = ''
+
+    todos.forEach(todo => {
+        const li = document.createElement('li')
+
+        const label = document.createElement('span')
+        label.textContent = todo.text
+
+        const checkbox = document.createElement('input')
+        checkbox.type = 'checkbox'
+        checkbox.checked = todo.completed
+        checkbox.disabled = true // read-only on the homepage
+
+        li.append(label, checkbox)
+        todoList.append(li)
+    })
+}
+
+renderTodos()
+
+// send the user to the to-do page when the manage button is clicked
+const manageTodoButton = document.querySelector('#manage-todo-button')
+manageTodoButton.addEventListener('click', () => {
+    location.href = '/todo.html'
+})
