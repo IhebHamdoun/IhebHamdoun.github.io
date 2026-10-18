@@ -20,12 +20,57 @@ const isEvening = hours >= 17 || hours < 4 // is it evening?
 let message = ''
 
 if (isMorning) {
-  message = 'Good morning! Hope your day is off to a great start.'
+  message = 'Mornings still feel like a rough draft. Glad you’re reading this one.'
 } else if (isAfternoon) {
-  message = 'Good afternoon! Thanks for stopping by.'
+  message = 'Afternoon’s a strange little pocket of the day. Glad you’re in it.'
 } else if (isEvening) {
-  message = 'Good evening! Glad you could visit.'
+  message = 'Evening has a way of slowing everything down. Glad you’re here for it.'
 }
 
 // display the message on the page
 welcomeDiv.textContent = message
+
+// carousel - poster images for the favorites list, stored in the img folder
+const urls = [
+    '/img/lost.jpg',
+    '/img/from.jpg',
+    '/img/one-piece.jpg',
+    '/img/umbrella-academy.jpg',
+    '/img/hill-house.jpg',
+    '/img/bly-manor.jpg'
+].map(url => { (new Image()).src = url; return url })
+
+const images = document.querySelectorAll('#carousel img')
+
+let currentImage = 0
+const showImages = () => {
+    const offset = currentImage % urls.length
+    images.forEach((image, index) => {
+        const imageIndex = (index + offset + urls.length) % urls.length
+        image.src = urls[imageIndex]
+    })
+}
+
+showImages()
+
+// grab the previous and next buttons
+const prevButton = document.querySelector('#prev')
+const nextButton = document.querySelector('#next')
+
+// shift left (forward) when next is clicked
+nextButton.addEventListener('click', () => {
+    currentImage++
+    showImages()
+})
+
+// shift right (backward) when previous is clicked
+prevButton.addEventListener('click', () => {
+    currentImage--
+    showImages()
+})
+
+// automatically move forward every 5 seconds
+setInterval(() => {
+    currentImage++
+    showImages()
+}, 5000)

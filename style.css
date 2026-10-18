@@ -25,7 +25,10 @@ body {
 
 header {
   display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
   align-items: center;
+  text-align: left;
   gap: 1.75rem;
   padding-bottom: 2.5rem;
   border-bottom: 1px solid var(--line);
@@ -111,17 +114,62 @@ footer {
   font-size: 0.85rem;
 }
 
-@media (max-width: 480px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-  }
-  ul.favorites li {
-    flex-direction: column;
-    gap: 0.1rem;
-  }
-  ul.favorites .note {
-    text-align: left;
-  }
+#welcome {
+  text-align: center;
+  font-style: italic;
+  color: #6b675f;
+  margin: 0 0 2.5rem;
 }
+
+#carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 300px;
+  overflow: visible;
+}
+
+#carousel img {
+  max-height: 300px;
+  aspect-ratio: auto 300 / 400;
+  border-radius: 10px;
+  position: relative;
+  transition: all 0.3s ease;
+  object-fit: cover;
+}
+
+/* the center image sits on top, full size, with a shadow to lift it off the page */
+#carousel img:nth-child(2) {
+  z-index: 3;
+  max-height: 300px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* the side images sit behind the center one, slightly smaller and dimmed */
+#carousel img:nth-child(1),
+#carousel img:nth-child(3) {
+  z-index: 1;
+  max-height: 250px;
+  opacity: 0.6;
+  filter: brightness(0.85);
+}
+
+/* pull the left image under the center image */
+#carousel img:nth-child(1) {
+  margin-right: -55px;
+}
+
+/* pull the right image under the center image */
+#carousel img:nth-child(3) {
+  margin-left: -55px;
+}
+
+#buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
