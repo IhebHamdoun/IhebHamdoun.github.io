@@ -172,6 +172,7 @@ footer {
   margin-top: 10px;
 }
 
+/* To Do List */
 .todo-list {
   list-style: none;
   margin: 0 auto;
@@ -205,4 +206,20 @@ footer {
   align-items: center;
   gap: 0.5rem;
   margin-top: 1rem;
+}
+
+/* Pokemon buddy */
+#pokemon {
+  text-align: center;
+}
+
+#pokemon img {
+  width: 250px;
+  image-rendering: pixelated;
+}
+
+#buddy-message {
+  text-align: center;
+  font-style: italic;
+  margin: 0.5rem auto 0;
 }
